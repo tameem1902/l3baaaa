@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", "Tajawal", sans-serif;
+}
+
+@layer base {
+  :root {
+    --bg-primary: #0f172a;
+    --text-primary: #ffffff;
+  }
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+.hex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hex-row {
+  display: flex;
+  justify-content: center;
+  /* Exact math: 128 - 32 = 96 vertical distance */
+  margin-top: -32px; 
+}
+
+.hex-row:first-child {
+  margin-top: 0;
+}
+
+/* 100% Robust Row Shifting using Transform (immune to flex/dir bugs) */
+.hex-row:nth-child(even) {
+  transform: translateX(27.75px);
+}
+.hex-row:nth-child(odd) {
+  transform: translateX(-27.75px);
+}
+
+/* TV Panel Shadow */
+.tv-panel-shadow {
+  box-shadow: -15px 0 30px rgba(0,0,0,0.5);
+}
+
+/* Floating animation for logo/title */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+.animate-float {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* 3D Text */
+.text-3d {
+  text-shadow: 
+    0 1px 0 #b45309,
+    0 2px 0 #b45309,
+    0 3px 0 #92400e,
+    0 4px 0 #92400e,
+    0 5px 10px rgba(0,0,0,0.5);
+}
+
+@keyframes crazy-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.bg-youthful {
+  background: linear-gradient(-45deg, #ff00ff, #00ffff, #ff00ff, #00ff00);
+  background-size: 400% 400%;
+  animation: crazy-bg 5s ease infinite;
+}
+
+@keyframes walk-lizard {
+  0% { top: 10%; left: 10%; transform: rotate(45deg); }
+  25% { top: 80%; left: 40%; transform: rotate(135deg); }
+  50% { top: 60%; left: 80%; transform: rotate(225deg); }
+  75% { top: 20%; left: 60%; transform: rotate(315deg); }
+  100% { top: 10%; left: 10%; transform: rotate(45deg); }
+}
+.animate-lizard {
+  animation: walk-lizard 10s linear infinite;
+}
